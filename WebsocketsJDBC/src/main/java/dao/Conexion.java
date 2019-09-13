@@ -12,9 +12,9 @@ public class Conexion {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conexion = DriverManager.getConnection(
-                    "jdbc:sqlserver://localhost;database=iDoc",
-                    "admin",
-                    "admin");
+                    "jdbc:sqlserver://34.73.201.76;database=Team04",
+                    "User04",
+                    "Demo123456789");
         } catch (SQLException e) {
             e.printStackTrace();
         }

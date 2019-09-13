@@ -8,7 +8,7 @@
         <title>Persona</title>
     </h:head>
     <h:body>
-        <p:growl widgetVar="growlWV" life="1000"/>
+        <p:growl widgetVar="growlWV" life="1000" showDetail="true"/>
         <h:form id="frmRegistrarPersona">
             <h:panelGroup>
                 <p:inputText value="#{personaC.persona.APEPATPER}"
@@ -80,6 +80,13 @@
                     oncomplete="PF('wvDtTblPersona').filter();"
                     actionListener="#{personaC.registrar()}" update=":frmRegistrarPersona :frmListarPersona"/>
             </h:panelGroup>
+            <h:panelGroup>
+                <p:commandLink  
+                    id="btnActualizar" type="button" async="true"
+                    value="Actualizar" immediate="true" style="display: none;"
+                    oncomplete="PF('wvDtTblPersona').filter();"
+                    actionListener="#{personaC.listar()}" update=":frmRegistrarPersona :frmListarPersona"/>
+            </h:panelGroup>
             <p:blockUI block="frmRegistrarPersona" trigger="btnRegistrarPersona">
             </p:blockUI>
         </h:form>
@@ -88,6 +95,7 @@
                          value="#{personaC.lista}" var="listaPersona" 
                          reflow="true" rowKey="#{listaPersona.IDPER}"
                          selectionMode="single" selection="#{personaC.personaSeleccionada}"
+                         sortBy="#{listaPersona.IDPER}" sortOrder="descending"
                          rows="10" emptyMessage="No se encontrarón datos." 
                          filteredValue="#{personaC.listaFiltrada}"
                          paginator="true" scrollable="false" scrollHeight="500"

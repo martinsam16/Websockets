@@ -38,6 +38,7 @@ public class PersonaC implements Serializable {
     public void listar() throws Exception {
         try {
             lista = daoPersona.listar();
+            System.out.println("Litado!!!!!!!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,7 +49,7 @@ public class PersonaC implements Serializable {
             if (lista.contains(persona) == false) {
                 daoPersona.registrar(persona);
                 PrimeFaces.current().executeScript("enviar('" + persona.getNOMPER() + "');");
-                listar();
+//                listar();
                 FacesContext.getCurrentInstance().addMessage(
                         null,
                         new FacesMessage("Registro Exitoso")

@@ -2,7 +2,6 @@ package websockets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.OnClose;
@@ -26,7 +25,7 @@ public class ActaW {
 
     @OnMessage
     public void handleMessage(String message, Session session) {
-        System.out.println("Recibido en Java: " + message + " de " + session.getId());
+        System.out.println("Recibido en el servidor Java: " + message + " de " + session.getId());
         try {
             broadcast(session,message);
         } catch (Exception e) {
