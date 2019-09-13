@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 @ApplicationScoped
 @ServerEndpoint("/ws/persona")
-public class ActaW {
+public class PersonaW {
 
     List<Session> sesiones = new ArrayList<>();
 
