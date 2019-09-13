@@ -71,7 +71,7 @@ public class PersonaC implements Serializable {
         try {
             daoPersona.editar(personaSeleccionada);
 //            listar();
-            PrimeFaces.current().executeScript("actualizarDatos();");
+            PrimeFaces.current().executeScript("enviar('" + personaSeleccionada.getNOMPER() + "');");
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage("Modificacion exitosa")
@@ -84,7 +84,7 @@ public class PersonaC implements Serializable {
     public void eliminar() throws Exception {
         try {
             daoPersona.eliminar(personaSeleccionada);
-            PrimeFaces.current().executeScript("actualizarDatos();");
+            PrimeFaces.current().executeScript("enviar('" + personaSeleccionada.getNOMPER() + "');");
 //            listar();
         } catch (Exception e) {
             e.printStackTrace();

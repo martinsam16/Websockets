@@ -21,9 +21,7 @@ socket.onmessage = function (event) {
 function actualizarDatos() {
     PrimeFaces.ab({s: "frmRegistrarPersona:btnActualizar", f: "frmRegistrarPersona", u: "frmRegistrarPersona frmListarPersona", onco: function (xhr, status, args) {
             PF('wvDtTblPersona').filter();
-            ;
         }});
-    return false;
 }
 
 
