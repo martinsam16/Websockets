@@ -10,6 +10,7 @@
         </param-name>
         <param-value>/recursos</param-value>
     </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -18,6 +19,7 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+        <url-pattern>/javax.faces.resource/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

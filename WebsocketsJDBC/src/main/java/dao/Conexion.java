@@ -10,11 +10,11 @@ public class Conexion {
 
     public static Connection conectar() throws Exception {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             conexion = DriverManager.getConnection(
-                    "jdbc:sqlserver://34.73.201.76;database=Team04",
-                    "User04",
-                    "Demo123456789");
+                    "jdbc:oracle:thin:@35.184.25.222:1521:XE",
+                    "dbiDoc",
+                    "iDoc-2019");
         } catch (SQLException e) {
             e.printStackTrace();
         }

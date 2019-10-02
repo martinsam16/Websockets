@@ -19,16 +19,18 @@ public class PersonaW {
 
     @OnOpen
     public void open(Session session) {
-        System.out.println("Sesion abierta");
-        sesiones.add(session);
+        if (sesiones.contains(session) == false) {
+            System.out.println("Sesion abierta");
+            sesiones.add(session);
+        }
     }
 
     @OnMessage
     public void handleMessage(String message, Session session) {
         System.out.println("Recibido en el servidor Java: " + message + " de " + session.getId());
         try {
-            broadcast(session,message);
-        } catch (Exception e) {
+            broadcast(session, message);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -10,83 +10,65 @@
     <h:body>
         <p:growl widgetVar="growlWV" life="1000" showDetail="true"/>
         <h:form id="frmRegistrarPersona">
-            <h:panelGroup>
+            <h:panelGrid columns="4">
+                <p:outputLabel value="Apellido Paterno"/>
                 <p:inputText value="#{personaC.persona.APEPATPER}"
                              requiredMessage="Apellido Paterno Requerido."
                              required="true" maxlength="50" id="apePatPer">
                     <p:keyFilter regEx='/[\a-z ]/i'/>
                 </p:inputText>
-                <p:outputLabel value="Apellido Paterno" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="Apellido Materno" />
                 <p:inputText value="#{personaC.persona.APEMATPER}"  requiredMessage="Apellido Materno Requerido."
                              id="apeMatPer"
                              required="true"  maxlength="50" style="text-transform: uppercase" >
                     <p:keyFilter regEx='/[\a-z ]/i'/>
                 </p:inputText>
-                <p:outputLabel value="Apellido Materno" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="Nombres" />
                 <p:inputText value="#{personaC.persona.NOMPER}" requiredMessage="Nombres Requeridos."
                              id="nomPer"
                              required="true" maxlength="50" style="text-transform: capitalize">
                     <p:keyFilter regEx='/[\a-z ]/i'/>
                 </p:inputText>
-                <p:outputLabel value="Nombres" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="DNI" />
+
                 <p:inputMask value="#{personaC.persona.DNIPER}" maxlength="8" mask="99999999" requiredMessage="DNI Requerido."
                              id="dniPer"
                              required="false"/>
-                <p:outputLabel value="DNI" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
-                <p:selectOneMenu value="#{personaC.persona.ubigeo.CODUBI}" 
+                <p:outputLabel value="Distrito" />
+
+                <p:selectOneMenu value="#{personaC.persona.ubigeo.CODUBI}" style="width: 60% !important"
                                  filter="true" filterMatchMode="contains">
                     <f:selectItems value="#{ubigeoC.listaUbigeo}" var="ubigeo"
                                    itemValue="#{ubigeo.CODUBI}" 
                                    itemLabel="#{ubigeo.DEPUBI}, #{ubigeo.PROVUBI} ,#{ubigeo.DISTUBI}"/>
                 </p:selectOneMenu>
-                <p:outputLabel value="Distrito" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="Dirección" />
                 <p:inputText value="#{personaC.persona.DIRPER}" requiredMessage="Direccion Requerida."
                              id="dirPer"
                              required="true"  maxlength="100" style="text-transform: capitalize" />
-                <p:outputLabel value="Dirección" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="Celular" />
                 <p:inputMask value="#{personaC.persona.CELPER}" mask="999999999"
                              id="celper" maxlength="9" />
-                <p:outputLabel value="Celular" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
+                <p:outputLabel value="Correo" />
                 <p:inputText value="#{personaC.persona.CORPER}" requiredMessage="Direccion Requerida."
                              id="corper" maxlength="50" />
-                <p:outputLabel value="Correo" for="@previous"/>
-            </h:panelGroup>
-            <h:panelGroup>
                 <p:outputLabel value="Sexo"/>
                 <p:selectOneRadio value="#{personaC.persona.GENPER}" requiredMessage="Seleccione un Sexo."
                                   unselectable="false" required="true">
                     <f:selectItem itemLabel="Masculino" itemValue="M" />
                     <f:selectItem itemLabel="Femenino" itemValue="F" />
                 </p:selectOneRadio>
-            </h:panelGroup>
-            <h:panelGroup>
-                <p:commandButton 
-                    id="btnRegistrarPersona"
-                    value="GUARDAR"
-                    oncomplete="PF('wvDtTblPersona').filter();"
-                    actionListener="#{personaC.registrar()}" update=":frmRegistrarPersona :frmListarPersona"/>
-            </h:panelGroup>
-            <h:panelGroup>
-                <p:commandLink  
-                    id="btnActualizar" type="button" async="true"
-                    value="Actualizar" immediate="true" style="display: none;"
-                    oncomplete="PF('wvDtTblPersona').filter();"
-                    actionListener="#{personaC.listar()}" update=":frmRegistrarPersona :frmListarPersona"/>
-            </h:panelGroup>
+            </h:panelGrid>
+            <p:commandButton 
+                id="btnRegistrarPersona"
+                value="GUARDAR"
+                oncomplete="PF('wvDtTblPersona').filter();"
+                actionListener="#{personaC.registrar()}" update=":frmRegistrarPersona :frmListarPersona"/>
+            <p:commandLink  
+                id="btnActualizar" type="button" async="true"
+                value="Actualizar" immediate="true" style="display: none;"
+                oncomplete="PF('wvDtTblPersona').filter();"
+                actionListener="#{personaC.listar()}" update=":frmRegistrarPersona :frmListarPersona"/>
             <p:blockUI block="frmRegistrarPersona" trigger="btnRegistrarPersona">
             </p:blockUI>
         </h:form>
@@ -143,10 +125,6 @@
                           sortBy="#{listaPersona.CELPER}">
                     <h:outputText value="#{listaPersona.CELPER}"/>
                 </p:column>
-                <p:column headerText="Correo"  
-                          sortBy="#{listaPersona.CORPER}">
-                    <h:outputText value="#{listaPersona.CORPER}"/>
-                </p:column>
 
                 <p:blockUI block="dtTblPersona" trigger="dtTblPersona">
                     Actualizando
@@ -163,70 +141,55 @@
         <p:dialog id="dlgDatosPersona" widgetVar="wdlgDatosPersona" 
                   header="Datos de la Persona" closeOnEscape="true">
             <h:form id="frmEditarPersona">
-                <h:panelGroup>
+                <h:panelGrid columns="4">
+                    <p:outputLabel value="Apellido Paterno"/>
                     <p:inputText value="#{personaC.personaSeleccionada.APEPATPER}"
                                  requiredMessage="Apellido Paterno Requerido."
-                                 required="true" maxlength="50" id="apePatPer"
-                                 style="text-transform: uppercase">
+                                 required="true" maxlength="50" id="apePatPer">
                         <p:keyFilter regEx='/[\a-z ]/i'/>
                     </p:inputText>
-                    <p:outputLabel value="Apellido Paterno" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="Apellido Materno" />
                     <p:inputText value="#{personaC.personaSeleccionada.APEMATPER}"  requiredMessage="Apellido Materno Requerido."
                                  id="apeMatPer"
                                  required="true"  maxlength="50" style="text-transform: uppercase" >
                         <p:keyFilter regEx='/[\a-z ]/i'/>
                     </p:inputText>
-                    <p:outputLabel value="Apellido Materno" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="Nombres" />
                     <p:inputText value="#{personaC.personaSeleccionada.NOMPER}" requiredMessage="Nombres Requeridos."
                                  id="nomPer"
                                  required="true" maxlength="50" style="text-transform: capitalize">
                         <p:keyFilter regEx='/[\a-z ]/i'/>
                     </p:inputText>
-                    <p:outputLabel value="Nombres" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="DNI" />
+
                     <p:inputMask value="#{personaC.personaSeleccionada.DNIPER}" maxlength="8" mask="99999999" requiredMessage="DNI Requerido."
                                  id="dniPer"
                                  required="false"/>
-                    <p:outputLabel value="DNI" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
-                    <p:selectOneMenu value="#{personaC.personaSeleccionada.ubigeo.CODUBI}"
+                    <p:outputLabel value="Distrito" />
+
+                    <p:selectOneMenu value="#{personaC.personaSeleccionada.ubigeo.CODUBI}" style="width: 60% !important"
                                      filter="true" filterMatchMode="contains">
                         <f:selectItems value="#{ubigeoC.listaUbigeo}" var="ubigeo"
                                        itemValue="#{ubigeo.CODUBI}" 
                                        itemLabel="#{ubigeo.DEPUBI}, #{ubigeo.PROVUBI} ,#{ubigeo.DISTUBI}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel value="Distrito" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="Dirección" />
                     <p:inputText value="#{personaC.personaSeleccionada.DIRPER}" requiredMessage="Direccion Requerida."
                                  id="dirPer"
                                  required="true"  maxlength="100" style="text-transform: capitalize" />
-                    <p:outputLabel value="Dirección" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="Celular" />
                     <p:inputMask value="#{personaC.personaSeleccionada.CELPER}" mask="999999999"
                                  id="celper" maxlength="9" />
-                    <p:outputLabel value="Celular" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
+                    <p:outputLabel value="Correo" />
                     <p:inputText value="#{personaC.personaSeleccionada.CORPER}" requiredMessage="Direccion Requerida."
                                  id="corper" maxlength="50" />
-                    <p:outputLabel value="Correo" for="@previous"/>
-                </h:panelGroup>
-                <h:panelGroup>
                     <p:outputLabel value="Sexo"/>
                     <p:selectOneRadio value="#{personaC.personaSeleccionada.GENPER}" requiredMessage="Seleccione un Sexo."
                                       unselectable="false" required="true">
                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                         <f:selectItem itemLabel="Femenino" itemValue="F" />
                     </p:selectOneRadio>
-                </h:panelGroup>
+                </h:panelGrid>
                 <h:panelGroup>
                     <p:commandButton value="Modificar" actionListener="#{personaC.editar()}"
                                      oncomplete="if(!args.validationFailed)PF('wdlgDatosPersona').hide();PF('wvDtTblPersona').filter();"

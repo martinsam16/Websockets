@@ -27,15 +27,24 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>7.2.1.jre8</version>
+            <groupId>com.github.noraui</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2</version>
         </dependency>
         <!--WebSockets-->
+        
+        <!--        
         <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
             <version>1.1</version>
+        </dependency>
+        -->
+        <!--Para que funke en el server de Wildfly-->
+        <dependency> 
+            <groupId>org.jboss.spec.javax.websocket</groupId>
+            <artifactId>jboss-websocket-api_1.0_spec</artifactId>
+            <version>1.0.0.Final</version>
         </dependency>
     </dependencies>
 
@@ -94,6 +103,12 @@
             <id>PrimeFaces-maven-lib</id>
             <layout>default</layout>
             <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+        <repository>
+            <url>http://nexus.saas.hand-china.com/content/repositories/rdc/</url>
+            <id>oracle</id>
+            <layout>default</layout>
+            <name>Oracle Driver JDBC</name>
         </repository>
     </repositories>
 </project>
