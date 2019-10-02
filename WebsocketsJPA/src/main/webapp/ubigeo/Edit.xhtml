@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UbigeoEditDlg" widgetVar="UbigeoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUbigeoTitle}">
+            <h:form id="UbigeoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ubigeoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUbigeoLabel_codubi}" for="codubi" />
+                        <p:inputText id="codubi" value="#{ubigeoController.selected.codubi}" title="#{bundle.EditUbigeoTitle_codubi}" required="true" requiredMessage="#{bundle.EditUbigeoRequiredMessage_codubi}"/>
+                        <p:outputLabel value="#{bundle.EditUbigeoLabel_depubi}" for="depubi" />
+                        <p:inputText id="depubi" value="#{ubigeoController.selected.depubi}" title="#{bundle.EditUbigeoTitle_depubi}" required="true" requiredMessage="#{bundle.EditUbigeoRequiredMessage_depubi}"/>
+                        <p:outputLabel value="#{bundle.EditUbigeoLabel_provubi}" for="provubi" />
+                        <p:inputText id="provubi" value="#{ubigeoController.selected.provubi}" title="#{bundle.EditUbigeoTitle_provubi}" />
+                        <p:outputLabel value="#{bundle.EditUbigeoLabel_distubi}" for="distubi" />
+                        <p:inputText id="distubi" value="#{ubigeoController.selected.distubi}" title="#{bundle.EditUbigeoTitle_distubi}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ubigeoController.update}" value="#{bundle.Save}" update="display,:UbigeoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UbigeoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UbigeoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

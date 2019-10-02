@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UbigeoViewDlg" widgetVar="UbigeoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUbigeoTitle}">
+            <h:form id="UbigeoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ubigeoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUbigeoLabel_codubi}"/>
+                        <h:outputText value="#{ubigeoController.selected.codubi}" title="#{bundle.ViewUbigeoTitle_codubi}"/>
+                        <h:outputText value="#{bundle.ViewUbigeoLabel_depubi}"/>
+                        <h:outputText value="#{ubigeoController.selected.depubi}" title="#{bundle.ViewUbigeoTitle_depubi}"/>
+                        <h:outputText value="#{bundle.ViewUbigeoLabel_provubi}"/>
+                        <h:outputText value="#{ubigeoController.selected.provubi}" title="#{bundle.ViewUbigeoTitle_provubi}"/>
+                        <h:outputText value="#{bundle.ViewUbigeoLabel_distubi}"/>
+                        <h:outputText value="#{ubigeoController.selected.distubi}" title="#{bundle.ViewUbigeoTitle_distubi}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UbigeoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
