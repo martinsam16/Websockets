@@ -69,8 +69,7 @@
                 value="Actualizar" immediate="true" style="display: none;"
                 oncomplete="PF('wvDtTblPersona').filter();"
                 actionListener="#{personaC.listar()}" update=":frmRegistrarPersona :frmListarPersona"/>
-            <p:blockUI block="frmRegistrarPersona" trigger="btnRegistrarPersona">
-            </p:blockUI>
+            <p:blockUI block="frmRegistrarPersona" trigger="btnRegistrarPersona"/>
         </h:form>
         <h:form id="frmListarPersona">
             <p:dataTable id="dtTblPersona" widgetVar="wvDtTblPersona"
@@ -138,7 +137,7 @@
                             icon="ui-icon-circle-close"/>
             </p:contextMenu>
         </h:form>
-        <p:dialog id="dlgDatosPersona" widgetVar="wdlgDatosPersona" 
+        <p:dialog id="dlgDatosPersona" widgetVar="wdlgDatosPersona" modal="true"
                   header="Datos de la Persona" closeOnEscape="true">
             <h:form id="frmEditarPersona">
                 <h:panelGrid columns="4">
@@ -191,7 +190,7 @@
                     </p:selectOneRadio>
                 </h:panelGrid>
                 <h:panelGroup>
-                    <p:commandButton value="Modificar" actionListener="#{personaC.editar()}"
+                    <p:commandButton id="btnEditarPersona" value="Modificar" actionListener="#{personaC.editar()}"
                                      oncomplete="if(!args.validationFailed)PF('wdlgDatosPersona').hide();PF('wvDtTblPersona').filter();"
                                      update=":frmListarPersona :frmRegistrarPersona">
                         <p:confirm header="Confirmation" message="¿Quiere Modificar?" icon="ui-icon-alert" />
@@ -203,9 +202,10 @@
                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
                 <h:panelGroup>
-                    <p:commandButton value="Cancelar" immediate="true"
+                    <p:commandButton id="btnCancelarEdicion" value="Cancelar" immediate="true" 
                                      oncomplete="PF('wdlgDatosPersona').hide();"/>
                 </h:panelGroup>
+                <p:blockUI block="frmEditarPersona" trigger="btnEditarPersona,btnCancelarEdicion"/>
             </h:form>
 
         </p:dialog>

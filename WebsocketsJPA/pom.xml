@@ -38,6 +38,12 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <!--Para que funke en el server de Wildfly-->
+        <dependency> 
+            <groupId>org.jboss.spec.javax.websocket</groupId>
+            <artifactId>jboss-websocket-api_1.0_spec</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
     </dependencies>
 
     <build>

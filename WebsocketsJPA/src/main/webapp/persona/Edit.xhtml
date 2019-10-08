@@ -52,7 +52,7 @@
                                      id="celper" value="#{personaController.selected.celper}" title="#{bundle.EditPersonaTitle_celper}" />
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
+                    <p:commandButton actionListener="#{personaController.update()}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

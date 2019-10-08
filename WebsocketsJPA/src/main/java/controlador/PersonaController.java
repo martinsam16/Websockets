@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.PrimeFaces;
 
 @Named("personaController")
 @SessionScoped
@@ -27,6 +29,15 @@ public class PersonaController implements Serializable {
     private modelo.dao.PersonaFacade ejbFacade;
     private List<Persona> items = null, listaFiltrado;
     private Persona selected;
+
+    @PostConstruct
+    public void init() {
+        try {
+            listarActivos();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public PersonaController() {
     }
@@ -74,10 +85,12 @@ public class PersonaController implements Serializable {
         }
     }
 
+    public void listarActivos() {
+        items = getFacade().listarActivos();
+        System.out.println("Datos listados correctamente c:");
+    }
+
     public List<Persona> getItems() {
-        if (items == null) {
-            items = getFacade().listarActivos();
-        }
         return items;
     }
 
@@ -93,7 +106,9 @@ public class PersonaController implements Serializable {
                 } else {
                     getFacade().remove(selected);
                 }
-                JsfUtil.addSuccessMessage(successMessage);
+//                listarActivos();
+                PrimeFaces.current().executeScript("enviar('" + selected.getNomper() + "');");
+//                JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
                 String msg = "";
                 Throwable cause = ex.getCause();
@@ -117,11 +132,11 @@ public class PersonaController implements Serializable {
     }
 
     public List<Persona> getItemsAvailableSelectMany() {
-        return getFacade().listarActivos();
+        return items;
     }
 
     public List<Persona> getItemsAvailableSelectOne() {
-        return getFacade().listarActivos();
+        return items;
     }
 
     public List<Persona> getListaFiltrado() {
@@ -131,7 +146,6 @@ public class PersonaController implements Serializable {
     public void setListaFiltrado(List<Persona> listaFiltrado) {
         this.listaFiltrado = listaFiltrado;
     }
-    
 
     @FacesConverter(forClass = Persona.class)
     public static class PersonaControllerConverter implements Converter {

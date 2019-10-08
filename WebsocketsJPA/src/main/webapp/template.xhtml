@@ -14,14 +14,21 @@
     <h:body>
 
         <p:growl id="growl" life="3000" />
+        <p:growl widgetVar="mensajeSockets" life="3000" showDetail="true" globalOnly="true"/>
 
         <p:layout fullPage="true">
 
             <p:layoutUnit position="center">
                 <ui:insert name="body"/>
+                <h:form>
+                    <p:commandButton id="btnActualizarPersona" 
+                                     value="btnActualizarBandeja" immediate="true" update="#{formsActualizar}"
+                                     actionListener="#{personaController.listarActivos()}"/>
+                </h:form>
             </p:layoutUnit>
-
         </p:layout>
+
+        <h:outputScript library="js" name="cliente.js"/>
 
     </h:body>
 
